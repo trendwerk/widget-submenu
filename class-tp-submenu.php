@@ -16,8 +16,8 @@ class TP_Submenu extends WP_Widget {
 	
 	function __construct() {
 		$this->WP_Widget( 'TP_Submenu', __( 'Submenu', 'tp' ), array(
-			'description' => __( 'Shows submenu items of current menu item or parent.', 'tp'
-		) ) );
+			'description' => __( 'Shows submenu items of current menu item or parent.', 'tp' )
+		) );
 
 		add_filter( 'wp_nav_menu_objects', array( $this, 'submenu' ), 10, 2 );
 	}
