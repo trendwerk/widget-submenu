@@ -8,15 +8,30 @@
  * Author: Trendwerk
  * Author URI: https://github.com/trendwerk
  * 
- * Version: 1.0.0
+ * Version: 1.0.1
  */
+
+class TP_Submenu_Plugin {
+
+	function __construct() {
+		add_action( 'plugins_loaded', array( $this, 'localization' ) );
+	}
+
+	/**
+	 * Load localization
+	 */
+	function localization() {
+		load_muplugin_textdomain( 'widget-submenu', dirname( plugin_basename( __FILE__ ) ) . '/assets/lang/' );
+	}
+
+} new TP_Submenu_Plugin;
 
 class TP_Submenu extends WP_Widget {
 	var $title;
 	
 	function __construct() {
-		$this->WP_Widget( 'TP_Submenu', __( 'Submenu', 'tp' ), array(
-			'description' => __( 'Shows submenu items of current menu item or parent.', 'tp' )
+		$this->WP_Widget( 'TP_Submenu', __( 'Submenu', 'widget-submenu' ), array(
+			'description' => __( 'Shows submenu items of current menu item or parent.', 'widget-submenu' )
 		) );
 
 		add_filter( 'wp_nav_menu_objects', array( $this, 'submenu' ), 10, 2 );
@@ -39,7 +54,7 @@ class TP_Submenu extends WP_Widget {
 			<label>
 
 				<strong>
-					<?php _e( 'Menu' ); ?>
+					<?php _e( 'Menu', 'widget-submenu' ); ?>
 				</strong>
 
 				<select class="widefat" id="<?php echo $this->get_field_id( 'menu' ); ?>" name="<?php echo $this->get_field_name( 'menu' ); ?>" type="text" value="<?php echo $instance['menu']; ?>">
