@@ -42,9 +42,12 @@ class TP_Submenu_Plugin {
 			return array();
 
 		$parent = $this->get_top( $current, $items );
-		$this->title = $parent->title;
+		$children = $this->get_children( $parent, $items );
 
-		return $this->get_children( $parent, $items );
+		if( 0 < count( $children ) )
+			$this->title = $parent->title;
+
+		return $children;
 	}
 
 	/**
