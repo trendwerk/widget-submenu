@@ -85,7 +85,7 @@ $GLOBALS['tp_submenu_plugin'] = new TP_Submenu_Plugin();
 class TP_Submenu extends WP_Widget {
 
 	function __construct() {
-		$this->WP_Widget( 'TP_Submenu', __( 'Submenu', 'widget-submenu' ), array(
+		parent::__construct( 'TP_Submenu', __( 'Submenu', 'widget-submenu' ), array(
 			'description' => __( 'Shows submenu items of current menu item or parent.', 'widget-submenu' )
 		) );
 	}
