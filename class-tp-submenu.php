@@ -14,8 +14,15 @@
 class TP_Submenu_Plugin {
 	/**
 	 * Last parsed title
+	 *
+	 * Used in versions <= 1.0.4
 	 */
 	public $title;
+
+	/**
+	 * Top item
+	 */
+	public $topItem;
 
 	function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'localization' ) );
@@ -44,8 +51,10 @@ class TP_Submenu_Plugin {
 		$parent = $this->get_top( $current, $items );
 		$children = $this->get_children( $parent, $items );
 
-		if( 0 < count( $children ) )
+		if( 0 < count( $children ) ) {
 			$this->title = $parent->title;
+			$this->topItem = $parent;
+		}
 
 		return $children;
 	}
@@ -147,7 +156,16 @@ class TP_Submenu extends WP_Widget {
 
 		echo $before_widget;
 
-			echo $before_title . $tp_submenu_plugin->title . $after_title;
+			echo $before_title;
+				$link = $tp_submenu_plugin->topItem->url;
+				$title = $tp_submenu_plugin->topItem->title;
+
+				if (strlen($link) > 0) {
+					echo '<a href="' . $link . '" title="' . $title . '">' . $title . '</a>';
+				} else {
+					echo $title;
+				}
+			echo $after_title;
 
 			echo $menu;
 
