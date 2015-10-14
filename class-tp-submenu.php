@@ -8,7 +8,7 @@
  * Author: Trendwerk
  * Author URI: https://github.com/trendwerk
  * 
- * Version: 1.0.4
+ * Version: 1.1.0
  */
 
 class TP_Submenu_Plugin {
