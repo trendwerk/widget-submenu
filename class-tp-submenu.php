@@ -4,11 +4,11 @@
  * Description: Submenu widget.
  *
  * Plugin URI: https://github.com/trendwerk/widget-submenu
- * 
+ *
  * Author: Trendwerk
  * Author URI: https://github.com/trendwerk
- * 
- * Version: 1.1.0
+ *
+ * Version: 1.1.1
  */
 
 class TP_Submenu_Plugin {
@@ -111,7 +111,7 @@ class TP_Submenu extends WP_Widget {
 		if( 0 === count( $menus ) )
 			return;
 		?>
-		
+
 		<p>
 			<label>
 
@@ -133,16 +133,16 @@ class TP_Submenu extends WP_Widget {
 
 			</label>
 		</p>
-		
+
 		<?php
 	}
-	
+
 	function widget( $args, $instance ) {
 		extract( $args );
 
 		if( ! isset( $instance['menu'] ) || 0 === strlen( $instance['menu'] ) )
 			return;
-		
+
 		$menu = wp_nav_menu( array(
 			'menu'    => $instance['menu'],
 			'submenu' => true,
